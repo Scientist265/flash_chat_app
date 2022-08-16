@@ -96,6 +96,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 colour: Colors.lightBlueAccent,
                 tittle: 'Login In',
                 onPressed: () async {
+                  //refactored codes
                   setState(() {
                     showSpinner = true;
                   });
