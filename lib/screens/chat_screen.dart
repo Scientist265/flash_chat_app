@@ -99,8 +99,11 @@ class _ChatScreenState extends State<ChatScreen> {
                       messageTextController
                           .clear(); // this clears the message from Text field after been sent
                       //messageText + loggedUser.email
-                      _firestore.collection('messages').add(
-                          {'text': messageText, 'sender': loggedInUser.email});
+                      _firestore.collection('messages').add({
+                        'text': messageText,
+                        'sender': loggedInUser.email,
+                        'date': FieldValue.serverTimestamp(),
+                      });
                     },
                     child: Text(
                       'Send',

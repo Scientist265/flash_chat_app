@@ -18,7 +18,7 @@ class _LoginScreenState extends State<LoginScreen> {
   final _auth = FirebaseAuth.instance;
   String email;
   String password;
-  bool showPassword = false;
+  bool showPassword = true;
 
   @override
   Widget build(BuildContext context) {
@@ -72,7 +72,7 @@ class _LoginScreenState extends State<LoginScreen> {
               ),
               TextField(
                 textAlign: TextAlign.center,
-                obscureText: true,
+                obscureText: showPassword,
                 onChanged: (value) {
                   setState(() {
                     password = value;
@@ -106,6 +106,7 @@ class _LoginScreenState extends State<LoginScreen> {
                         .then((result) {
                       Navigator.pushNamed(context, ChatScreen.idc);
                     });
+
                     setState(() {
                       showSpinner = false;
                     });

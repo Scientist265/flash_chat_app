@@ -9,7 +9,10 @@ class MessageStream extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return StreamBuilder<QuerySnapshot>(
-        stream: _firestore.collection('messages').snapshots(),
+        stream: _firestore
+            .collection('messages')
+            .orderBy('date', descending: false)
+            .snapshots(),
         builder: (context, snapshot) {
           if (!snapshot.hasData) {
             return Center(
@@ -31,10 +34,8 @@ class MessageStream extends StatelessWidget {
               text: messageText,
               isMe: currentUser == messageSender,
             );
+
             messageBubbles.add(messageBubble);
-            FirebaseFirestore.instance
-                .collection('messages')
-                .orderBy('time_field', descending: true);
           }
           return Expanded(
             child: ListView(
